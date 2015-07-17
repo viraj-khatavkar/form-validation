@@ -116,9 +116,9 @@ if(isset($_POST['submit']))
                 <label for="type">Type <sup>*</sup></label><!--
                     --><select name="type" id="type">
                     <option calue=""></option>
-                    <option value="type1">Type 1</option>
-                    <option value="type2">Type 2</option>
-                    <option value="type3">Type 3</option>
+                    <option value="type1" <?php if(isset($old_value['type'])) { if($old_value['type'] == 'type1') echo"selected"; } ?>>Type 1</option>
+                    <option value="type2" <?php if(isset($old_value['type'])) { if($old_value['type'] == 'type2') echo"selected"; } ?>>Type 2</option>
+                    <option value="type3" <?php if(isset($old_value['type'])) { if($old_value['type'] == 'type3') echo"selected"; } ?>>Type 3</option>
                 </select>
                 <?php
                 if(isset($errors['type']))
