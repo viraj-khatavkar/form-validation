@@ -12,16 +12,32 @@ if(isset($_POST['submit']))
     endforeach;
 
     if(!isset($_POST['gender']))
+    {
         $errors['gender'][] = "Gender is required";
+    }
     else
+    {
         $old_value['gender'] = $_POST['gender'];
+    }
 
     if(!isset($_POST['agree']))
+    {
         $errors['agree'][] = "Please accept terms and conditions";
+    }
     else
+    {
         $old_value['agree'] = 1;
+    }
 
-    var_dump($old_value);
+    if ( ! filter_var ( $_POST["companyemail"] , FILTER_VALIDATE_EMAIL ) )
+    {
+        $errors['companyemail'][] = "Invalid email address";
+    }
+
+    if ( ! filter_var ( $_POST["contactemail"] , FILTER_VALIDATE_EMAIL ) )
+    {
+        $errors['contactemail'][] = "Invalid email address";
+    }
 }
 
 ?>
@@ -57,7 +73,7 @@ if(isset($_POST['submit']))
                     --><input type="text" name="companyname" id="companyname" placeholder="Company Name" value="<?php if(isset($old_value['companyname'])) echo $old_value['companyname'] ?>">
                     <?php
                         foreach($errors['companyname'] as $error):
-                            echo"<span class='error'> ".ucfirst($error)." </span>";
+                            echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                         endforeach;
                     ?>
             </div><!--
@@ -66,7 +82,7 @@ if(isset($_POST['submit']))
                     --><input type="text" name="companyemail" id="companyemail" placeholder="Company Email" value="<?php if(isset($old_value['companyemail'])) echo $old_value['companyemail'] ?>">
                     <?php
                         foreach($errors['companyemail'] as $error):
-                            echo"<span class='error'> ".ucfirst($error)." </span>";
+                            echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                         endforeach;
                     ?>
             </div>
@@ -77,7 +93,7 @@ if(isset($_POST['submit']))
                     --><input type="text" name="address1" id="address1" placeholder="Address 1" value="<?php if(isset($old_value['address1'])) echo $old_value['address1'] ?>">
                     <?php
                         foreach($errors['address1'] as $error):
-                            echo"<span class='error'> ".ucfirst($error)." </span>";
+                            echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                         endforeach;
                     ?>
             </div><!--
@@ -97,7 +113,7 @@ if(isset($_POST['submit']))
                 </select>
                 <?php
                     foreach($errors['type'] as $error):
-                        echo"<span class='error'> ".ucfirst($error)." </span>";
+                        echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                     endforeach;
                 ?>
             </div>
@@ -118,7 +134,7 @@ if(isset($_POST['submit']))
                         --><input type="text" name="contactname" id="contactname" placeholder="Contact Name" value="<?php if(isset($old_value['contactname'])) echo $old_value['contactname'] ?>">
                         <?php
                             foreach($errors['contactname'] as $error):
-                                echo"<span class='error'> ".ucfirst($error)." </span>";
+                                echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                             endforeach;
                         ?>
                 </div><!--
@@ -127,7 +143,7 @@ if(isset($_POST['submit']))
                         --><input type="text" name="contactemail" id="contactemail" placeholder="Contact Email" value="<?php if(isset($old_value['contactemail'])) echo $old_value['contactemail'] ?>">
                         <?php
                             foreach($errors['contactemail'] as $error):
-                                echo"<span class='error'> ".ucfirst($error)." </span>";
+                                echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                             endforeach;
                         ?>
                 </div>
@@ -138,7 +154,7 @@ if(isset($_POST['submit']))
                         --><input type="text" name="phone1" id="phone1" placeholder="Phone 1" value="<?php if(isset($old_value['phone1'])) echo $old_value['phone1'] ?>">
                     <?php
                         foreach($errors['phone1'] as $error):
-                            echo"<span class='error'> ".ucfirst($error)." </span>";
+                            echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                         endforeach;
                     ?>
                 </div><!--
@@ -160,7 +176,7 @@ if(isset($_POST['submit']))
                 </div>
                 <?php
                 foreach($errors['gender'] as $error):
-                    echo"<span class='error'> ".ucfirst($error)." </span>";
+                    echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                 endforeach;
                 ?>
             </div>
@@ -168,7 +184,7 @@ if(isset($_POST['submit']))
                 <input type="checkbox" name="agree" <?php if(isset($old_value['agree'])) echo "checked"; ?>> I Agree
                 <?php
                 foreach($errors['agree'] as $error):
-                    echo"<span class='error'> ".ucfirst($error)." </span>";
+                    echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                 endforeach;
                 ?>
             </div>
