@@ -72,9 +72,12 @@ if(isset($_POST['submit']))
                 <label for="commpanyname">Company Name <sup>*</sup></label><!--
                     --><input type="text" name="companyname" id="companyname" placeholder="Company Name" value="<?php if(isset($old_value['companyname'])) echo $old_value['companyname'] ?>">
                     <?php
+                    if(isset($errors))
+                    {
                         foreach($errors['companyname'] as $error):
                             echo"<span class='error'><li>".ucfirst($error)." </li> </span>";
                         endforeach;
+                    }
                     ?>
             </div><!--
                 --><div class="right">
